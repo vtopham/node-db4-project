@@ -15,6 +15,9 @@ function getIngredients() {
 
 //returns an ingredient by Id
 function getIngredientById(id) {
+    return db.select('*')
+        .from('IngredientsList')
+        .where({id})
 
 }
 

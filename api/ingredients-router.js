@@ -11,8 +11,16 @@ router.get('/', (req, res) => {
         .catch(err => {
             res.status(500).json({message: "Error retrieving ingredients list", error: err})
         })
+})
 
-   
+router.get('/:id', (req, res) => {
+    Recipes.getIngredientById(req.params.id)
+        .then(ingredient => {
+            res.status(200).json({data: ingredient})
+        })
+        .catch(err => {
+            res.status(500).json({message: "Error retrieving ingredients list", error: err})
+        })
 })
 
 module.exports = router;
