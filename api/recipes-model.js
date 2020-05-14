@@ -3,12 +3,9 @@ const db = require('../db-config.js')
 module.exports = {
     getRecipes,
     getRecipesById,
-    getIngredients,
-    getIngredientById,
     getShoppingList,
     getInstructions,
     addRecipe,
-    addIngredient,
     addRecipeIngredient,
     addInstruction,
 }
@@ -26,15 +23,7 @@ function getRecipesById(id) {
         .where({id})
 }
 
-//returns all ingredients in the database
-function getIngredients() {
 
-}
-
-//returns an ingredient by Id
-function getIngredientById(id) {
-
-}
 
 //returns a list of all ingredients and quantities for a given recipe
 function getShoppingList(recipe_id) {
@@ -52,10 +41,7 @@ function addRecipe(recipe_data) {
 }
 
 
-//allows you to add an ingredient
-function addIngredient(ingredient_name) {
 
-}
 
 //allows you to add an ingredient to a recipe
 function addRecipeIngredient(recipe_id, ingredient_info) {
