@@ -25,8 +25,13 @@ function getRecipesById(id) {
 
 
 
+
+
 //returns a list of all ingredients and quantities for a given recipe
 function getShoppingList(recipe_id) {
+    return db.select('')
+        .from('RecipeIngredients')
+        .where('')
 
 }
 
@@ -45,7 +50,8 @@ function addRecipe(recipe_data) {
 
 //allows you to add an ingredient to a recipe
 function addRecipeIngredient(recipe_id, ingredient_info) {
-
+    return db('RecipeIngredients')
+        .insert({...ingredient_info, RecipeId: recipe_id})
 }
 
 //allows you to add an instruction to a recipe

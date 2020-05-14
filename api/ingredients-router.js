@@ -3,6 +3,7 @@ const express = require('express');
 const Recipes = require('./ingredients-model')
 const router = express.Router();
 
+//get a list of all ingredients
 router.get('/', (req, res) => {
     Recipes.getIngredients()
         .then(ingredients => {
@@ -13,6 +14,7 @@ router.get('/', (req, res) => {
         })
 })
 
+//get an ingredient by id
 router.get('/:id', (req, res) => {
     Recipes.getIngredientById(req.params.id)
         .then(ingredient => {

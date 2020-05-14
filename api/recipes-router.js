@@ -27,10 +27,30 @@ router.get('/:id', (req, res) => {
     
 })
 
-//A list of all ingrediens and quantities for a single recipe
+//A list of all ingredients and quantities for a single recipe
 router.get('/:id/shoppingList', (req, res) => {
+    Recipes.getShoppingList(req.params.id)
+        .then(ingredients => {
+            res.status(200).json({data: ingredients})
+        })
+        .catch(err => {
+            res.status(500).json({message: "Error retrieving ingredients", error: err})
+        })
+    
+})
+
+//add a recipe ingredient by recipe id
+router.post('/:id/ingredients', (req, res) => {
+    Recipes.addRecipeIngredient(req.params.id, req.body)
+    .then(returned => {
+        res.status(200).json({data: returned})
+    })
+    .catch(err => {
+        res.status(500).json({message: "Error adding ingredient", error: err})
+    })
 
 })
+
 
 //A correctly ordered list of how to prepare a single recipe
 router.get('/:id/instructions', (req, res) => {
