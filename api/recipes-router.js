@@ -5,7 +5,14 @@ const router = express.Router();
 
 //list of all recipes without details about ingredients or steps
 router.get('/', (req, res) => {
-    res.status(200).json({message: "You have reached the receipe router"})
+    Recipes.getRecipes()
+        .then(recipes => {
+            res.status(200).json({data: recipes})
+        })
+        .catch(err => {
+            res.status(500).json({message: "Error retrieving recipe list", error: err})
+        })
+    
 })
 
 //A list of all ingrediens and quantities for a single recipe

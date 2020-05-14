@@ -15,7 +15,8 @@ module.exports = {
 
 //returns all recipes in the database
 function getRecipes() {
-
+    return db.select('*')
+        .from('Recipes')
 }
 
 //returns a recipe by id
