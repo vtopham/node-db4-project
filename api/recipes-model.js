@@ -31,7 +31,9 @@ function getRecipesById(id) {
 function getShoppingList(recipe_id) {
     return db.select('')
         .from('RecipeIngredients')
-        .where('')
+        .where({
+            RecipeId: recipe_id
+        })
 
 }
 
