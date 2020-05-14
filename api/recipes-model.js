@@ -24,12 +24,9 @@ function getRecipesById(id) {
 }
 
 
-
-
-
 //returns a list of all ingredients and quantities for a given recipe
 function getShoppingList(recipe_id) {
-    return db.select('')
+    return db.select('*')
         .from('RecipeIngredients')
         .where({
             RecipeId: recipe_id
@@ -39,7 +36,12 @@ function getShoppingList(recipe_id) {
 
 //returns an ORDERED list of step by step instructions for preparing a recipe
 function getInstructions(recipe_id) {
-
+    return db.select('*')
+        .from('Instructions')
+        .where({
+            RecipeId: recipe_id
+        })
+        .orderBy('StepNumber')
 }
 
 //allows you to add a recipe
@@ -58,5 +60,6 @@ function addRecipeIngredient(recipe_id, ingredient_info) {
 
 //allows you to add an instruction to a recipe
 function addInstruction(recipe_id, instructions_info) {
-
+    return db('Instructions')
+        .insert({...instructions_info, RecipeId: recipe_id})
 }

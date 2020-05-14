@@ -54,7 +54,24 @@ router.post('/:id/ingredients', (req, res) => {
 
 //A correctly ordered list of how to prepare a single recipe
 router.get('/:id/instructions', (req, res) => {
+    Recipes.getInstructions(req.params.id)
+        .then(instructions => {
+            res.status(200).json({data: instructions})
+        })
+        .catch(err => {
+            res.status(500).json({message: "Error retrieving instructions", error: err})
+        })
+})
 
+//add an instructional step
+router.post('/:id/instructions', (req, res) => {
+    Recipes.addInstruction(req.params.id, req.body)
+    .then(returned => {
+        res.status(200).json({data: returned})
+    })
+    .catch(err => {
+        res.status(500).json({message: "Error adding instruction", error: err})
+    })
 })
 
 //All recipes in the system that utilize a single ingredient
