@@ -26,11 +26,12 @@ function getRecipesById(id) {
 
 //returns a list of all ingredients and quantities for a given recipe
 function getShoppingList(recipe_id) {
-    return db.select('*')
+    return db.select(db.ref('IngredientsList.IngredientName').as('Ingredient Name'), 'Quantity', 'UoM')
         .from('RecipeIngredients')
         .where({
             RecipeId: recipe_id
         })
+        .join('IngredientsList', 'IngredientsList.Id', '=', 'RecipeIngredients.IngredientId')
 
 }
 
