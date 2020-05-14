@@ -15,6 +15,18 @@ router.get('/', (req, res) => {
     
 })
 
+//get a recipe by id
+router.get('/:id', (req, res) => {
+    Recipes.getRecipesById(req.params.id)
+        .then(recipe => {
+            res.status(200).json({data: recipe})
+        })
+        .catch(err => {
+            res.status(500).json({message: "Error retrieving recipe", error: err})
+        })
+    
+})
+
 //A list of all ingrediens and quantities for a single recipe
 router.get('/:id/shoppingList', (req, res) => {
 

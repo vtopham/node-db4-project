@@ -21,7 +21,9 @@ function getRecipes() {
 
 //returns a recipe by id
 function getRecipesById(id) {
-
+    return db.select('*')
+        .from('Recipes')
+        .where({id})
 }
 
 //returns all ingredients in the database
