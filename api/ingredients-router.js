@@ -25,4 +25,16 @@ router.get('/:id', (req, res) => {
         })
 })
 
+//All recipes in the system that utilize a single ingredient
+router.get('/:id/recipes', (req, res) => {
+    Recipes.getRecipesByIngredient(req.params.id)
+    .then(recipes=> {
+        res.status(200).json({data: recipes})
+    })
+    .catch(err => {
+        res.status(500).json({message: "Error retrieving recipes that use that ingredient", error: err})
+    })
+})
+
+
 module.exports = router;
